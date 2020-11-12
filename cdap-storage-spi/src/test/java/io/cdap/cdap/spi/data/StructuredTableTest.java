@@ -573,14 +573,15 @@ public abstract class StructuredTableTest {
     int max = 5;
     List<Collection<Field<?>>> fields = writeSimpleStructuredRows(max, "");
     Assert.assertEquals(max, fields.size());
-    Collection<Range> ranges = Arrays.asList(Range.to(Collections.singletonList(Fields.intField(KEY, 2)),
-                                                      Range.Bound.INCLUSIVE),
-                                            Range.from(Collections.singletonList(Fields.intField(KEY, 2)),
-                                                       Range.Bound.EXCLUSIVE));
     // Verify count
     getTransactionRunner().run(context -> {
       StructuredTable table = context.getTable(SIMPLE_TABLE);
       Assert.assertEquals(max, table.count(Collections.singleton(Range.all())));
+
+      Collection<Range> ranges = Arrays.asList(Range.to(Collections.singletonList(Fields.intField(KEY, 2)),
+                                                        Range.Bound.INCLUSIVE),
+                                               Range.from(Collections.singletonList(Fields.intField(KEY, 2)),
+                                                          Range.Bound.EXCLUSIVE));
       Assert.assertEquals(max, table.count(ranges));
     });
   }
