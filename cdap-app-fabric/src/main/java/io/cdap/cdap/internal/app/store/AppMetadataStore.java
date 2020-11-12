@@ -273,11 +273,12 @@ public class AppMetadataStore {
     // Get number of applications where namespace != SYSTEM (exclude system applications)
     Collection<Field<?>> fields = ImmutableList.of(Fields.stringField(StoreDefinition.AppMetadataStore.NAMESPACE_FIELD,
                                                                       NamespaceId.SYSTEM.getNamespace()));
-    // Return sum of ranges [empty, SYSTEM) and (SYSTEM, empty)
-    return getApplicationSpecificationTable().count(Range.create(null, Range.Bound.INCLUSIVE, fields,
-                                                                 Range.Bound.EXCLUSIVE)) +
-      getApplicationSpecificationTable().count(Range.create(fields, Range.Bound.EXCLUSIVE, null,
-                                                            Range.Bound.INCLUSIVE));
+    // Return count of ranges [empty, SYSTEM) and (SYSTEM, empty)
+    Collection<Range> ranges = Arrays.asList(Range.create(null, Range.Bound.INCLUSIVE, fields,
+                                                          Range.Bound.EXCLUSIVE),
+                                             Range.create(fields, Range.Bound.EXCLUSIVE, null,
+                                                          Range.Bound.INCLUSIVE));
+    return getApplicationSpecificationTable().count(ranges);
   }
 
   public List<ApplicationMeta> getAllAppVersions(String namespaceId, String appId) throws IOException {
