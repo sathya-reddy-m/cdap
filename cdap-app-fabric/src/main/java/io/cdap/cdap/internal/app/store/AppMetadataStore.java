@@ -270,7 +270,14 @@ public class AppMetadataStore {
   }
 
   public long getApplicationCount() throws IOException {
-    return getApplicationSpecificationTable().count(Range.all());
+    // Get number of applications where namespace != SYSTEM (exclude system applications)
+    Collection<Field<?>> fields = ImmutableList.of(Fields.stringField(StoreDefinition.AppMetadataStore.NAMESPACE_FIELD,
+                                                                      NamespaceId.SYSTEM.getNamespace()));
+    // Return sum of ranges [empty, SYSTEM) and (SYSTEM, empty)
+    return getApplicationSpecificationTable().count(Range.create(null, Range.Bound.INCLUSIVE, fields,
+                                                                 Range.Bound.EXCLUSIVE)) +
+      getApplicationSpecificationTable().count(Range.create(fields, Range.Bound.EXCLUSIVE, null,
+                                                            Range.Bound.INCLUSIVE));
   }
 
   public List<ApplicationMeta> getAllAppVersions(String namespaceId, String appId) throws IOException {
