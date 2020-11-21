@@ -55,7 +55,7 @@ public class DraftHandler extends AbstractSystemHttpServiceHandler {
 
   private static HashMap<String, Draft> drafts = new HashMap<String, Draft>() {{
     put("test", new Draft("Test Draft",
-      "52edbc39-655a-4399-a5ad-82dc4cc55e22",
+      "test",
       ETLBatchConfig.builder()
                     .addStage(new ETLStage("source",
                       new ETLPlugin("Mock", BatchSource.PLUGIN_TYPE, new HashMap<>(), null)))
