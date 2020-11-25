@@ -141,7 +141,7 @@ describe('Creating pipeline with macros ', () => {
     ).should('not.exist');
     // running pipeline with fake runtime arguments
     cy.get(dataCy('preview-configure-run-btn')).click();
-    cy.get(`${dataCy('valium-banner-hydrator')}`).contains(PREVIEW_FAILED_BANNER_MSG, {
+    cy.get(`${dataCy('valium-banner-hydrator')}`).contains('random value1', {
       timeout: PIPELINE_RUN_TIMEOUT,
     });
     cy.get(`${dataCy('valium-banner-hydrator')} button`).click();

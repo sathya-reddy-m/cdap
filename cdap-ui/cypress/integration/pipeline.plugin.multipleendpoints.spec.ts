@@ -84,7 +84,7 @@ describe('Pipelines with plugins having more than one endpoints', () => {
     cy.get(Helpers.dataCy('pipeline-preview-btn')).click();
     cy.get(Helpers.dataCy('preview-top-run-btn')).click();
     cy.get(Helpers.dataCy('stop-preview-btn')).should('be.visible');
-    cy.get(Helpers.dataCy('preview-top-run-btn'), { timeout: 60000 }).should('exist');
+    cy.get(Helpers.dataCy('preview-top-run-btn'), { timeout: 60000 }).should('be.visible');
 
     // Check number of output fields for null splitter
     cy.get(Helpers.dataCy('UnionSplitter-preview-data-btn')).click();
