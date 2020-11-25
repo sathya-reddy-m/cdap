@@ -728,3 +728,10 @@ Cypress.Commands.add('delete_artifact_via_api', (headers, artifactName, version)
   });
 });
 
+Cypress.Commands.add('fit_pipeline_to_screen', () => {
+  return cy.get('[data-cy="pipeline-fit-to-screen-control"]').click();
+});
+
+Cypress.Commands.add('pipeline_clean_up_graph_control', () => {
+  return cy.get('[data-cy="pipeline-clean-up-graph-control"]').click();
+});
