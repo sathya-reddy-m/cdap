@@ -208,7 +208,7 @@ describe('Creating a pipeline', () => {
     cy.get('[data-testid=close-modeless]').click();
   });
 
-  it.only('opening pipeline with unknown workspace should still render the studio', () => {
+  it('opening pipeline with unknown workspace should still render the studio', () => {
     cy.visit(
       'pipelines/ns/default/studio?artifactType=cdap-data-pipeline&workspaceId=ebdbb6a7-8a8c-47b5-913f-9b75b1a0'
     );

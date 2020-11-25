@@ -342,7 +342,7 @@ describe('Deploying pipeline with saved runtime arguments', () => {
     cy.update_runtime_args_row(0, 'source_path', SOURCE_PATH_VAL, true);
     cy.update_runtime_args_row(1, 'sink_path', SINK_PATH_VAL, true);
     cy.get(dataCy('save-runtime-args-btn')).click();
-    cy.get(dataCy('save-runtime-args-btn')).should('not.be.visible');
+    cy.get(dataCy('save-runtime-args-btn')).should('does.not.exist');
     cy.get(dataCy('pipeline-run-btn')).should('be.visible');
     cy.get(dataCy('pipeline-run-btn')).click({ force: true });
     cy.get(dataCy('Succeeded'), { timeout: PIPELINE_RUN_TIMEOUT }).should('exist');
@@ -362,7 +362,7 @@ describe('Deploying pipeline with saved runtime arguments', () => {
     cy.assert_runtime_args_row(4, 'runtime_args_key4', 'runtime_args_value4');
     // saving previously entered arguments and openeing the modal again to verify
     cy.get(dataCy('save-runtime-args-btn')).click();
-    cy.get(dataCy('save-runtime-args-btn')).should('not.be.visible');
+    cy.get(dataCy('save-runtime-args-btn')).should('does.not.exist');
     cy.get('.arrow-btn-container').click();
     cy.assert_runtime_args_row(2, 'runtime_args_key2', 'runtime_args_value2');
     cy.assert_runtime_args_row(3, 'runtime_args_key3', 'runtime_args_value3');

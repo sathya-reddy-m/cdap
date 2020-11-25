@@ -67,7 +67,7 @@ describe('Creating a pipeline with missing artifacts', () => {
     cy.get(`[title="File"] ~ ${dataCy('node-properties-btn')}`).click({
       force: true
     });
-    cy.get(`#File ${dataCy('node-badge')}`).should('not.be.visible');
+    cy.get(`#File ${dataCy('node-badge')}`).should('does.not.exist');
     cy.get(dataCy('plugin-properties-validate-btn')).should('be.visible');
     cy.get('[data-testid=close-config-popover]').click();
     cy.get(dataCy('plugin-properties-validate-btn')).should('not.be.visible');

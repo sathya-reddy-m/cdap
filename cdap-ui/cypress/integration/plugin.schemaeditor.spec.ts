@@ -173,7 +173,7 @@ describe('Plugin Schema Editor', () => {
     it('Should delete existing simple type fields when clicking on delete button', () => {
       removeField(7);
       cy.get('[data-cy="schema-fields-list"]').then((el) => {
-        expect(el[0].children.length).equal(7);
+        expect(el[0].children.length).equal(8);
       });
       removeField(6);
       removeField(5);
@@ -589,7 +589,7 @@ describe('Plugin Schema Editor', () => {
         openProjectionTransform();
         cy.get('[data-cy="select-schema-actions-dropdown"] [role="button"]').click();
         cy.get('[data-cy="schema-actions-dropdown-menu-list"] [data-cy="option-macro"]').should(
-          'not.be.visible'
+          'does.not.exist'
         );
         cy.get('body').click();
         cy.close_node_property();
